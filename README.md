@@ -1,110 +1,107 @@
-# python-data-visualization-libraries-2025-v1
+# Data Engineering & Visualization Architecture
 
-[![Language: Python](https://img.shields.io/badge/language-Python-blue.svg)]()
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![CI Pipeline](https://github.com/krsna016/python-data-visualization-libraries-2025-v1/actions/workflows/ci.yml/badge.svg)](https://github.com/krsna016/python-data-visualization-libraries-2025-v1/actions/workflows/ci.yml)
-[![Security: CodeQL](https://github.com/krsna016/python-data-visualization-libraries-2025-v1/actions/workflows/codeql.yml/badge.svg)](https://github.com/krsna016/python-data-visualization-libraries-2025-v1/actions/workflows/codeql.yml)
+[![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&style=flat-square)](https://python.org)
+[![Pandas](https://img.shields.io/badge/Pandas-v2.0-150458?logo=pandas&style=flat-square)]()
+[![Plotly](https://img.shields.io/badge/Plotly-Interactive-3F4F75?logo=plotly&style=flat-square)]()
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-F37626?logo=jupyter&style=flat-square)]()
 
-Professional engineering repository configurations deployed inside your GitHub profile.
+## Overview
+This repository serves as a comprehensive Data Engineering and Visualization reference architecture. It aggregates high-performance programmatic approaches to large-scale data manipulation, statistical analysis, and interactive dashboard rendering utilizing industry-standard Python libraries.
 
----
+## Problem Statement
+Data scientists and analysts frequently default to highly inefficient `for-loops` (like `.iterrows()`) and static, non-interactive charts (`matplotlib` defaults) when processing datasets. This leads to severe memory bottlenecks and poor stakeholder presentations. This project documents and solves these constraints by enforcing strict Pandas vectorization and rendering complex, multi-dimensional geospatial/time-series data into interactive HTML payloads via Plotly and Bokeh.
 
-## Overview & Core Description
+## Key Features
+- **Vectorized Data Transformations:** Demonstrates O(1) performance architectures using Numpy broadcasting rather than O(n) loop structures.
+- **Interactive Web Dashboards:** Generates interactive, zoomable UI charts (Plotly/Bokeh) that can be seamlessly embedded into React/Next.js frontends.
+- **Statistical Heatmapping:** Utilizes Seaborn to expose multi-variable collinearity and deep correlation matrices.
+- **Library Agnosticism:** Decoupled modules allow rapid switching between rendering engines depending on the payload constraints (e.g., static PDFs vs interactive WebGL).
 
-Welcome to the **Data Science Masters 2.0** course repository by PWskills! This repository is designed to be a comprehensive resource for anyone enrolled in the Data Science Masters 2.0 program. Here, you'll find everything you need to master the principles and practices of data science, from foundational concepts to advanced techniques.
+## Architecture
 
-## Course Overview
-
-The Data Science Masters 2.0 course is meticulously crafted to equip you with the skills and knowledge required to excel in the field of data science. Whether you're a beginner or an experienced professional looking to enhance your skillset, this course covers a broad spectrum of topics, including:
-
-- **Data Analysis**: Techniques for analyzing data using statistical methods and exploratory data analysis (EDA).
-- **Machine Learning**: Understanding and implementing machine learning algorithms for predictive analytics.
-- **Deep Learning**: Introduction to neural networks and deep learning frameworks.
-- **Data Visualization**: Tools and techniques for visualizing data to derive meaningful insights.
-- **Big Data**: Handling and processing large datasets using Hadoop, Spark, and other big data technologies.
-- **Programming**: Proficiency in Python and R for data manipulation and analysis.
-- **Databases**: SQL and NoSQL databases for efficient data storage and retrieval.
-- **Capstone Projects**: Real-world projects to apply the concepts learned and build a portfolio.
-
-## Course Structure
-
-The course is structured over 25 weeks, each week focusing on a specific area of data science. Here’s a brief overview of the weekly structure:
-
-1. **Week 1-2**: Introduction to Data Science and Python Programming
-2. **Week 3-4**: Data Analysis and Visualization with Python
-3. **Week 5-6**: Statistics and Probability for Data Science
-4. **Week 7-8**: Introduction to Machine Learning
-5. **Week 9-10**: Supervised Learning Algorithms
-6. **Week 11-12**: Unsupervised Learning Algorithms
-7. **Week 13-14**: Feature Engineering and Model Evaluation
-8. **Week 15-16**: Advanced Machine Learning Techniques
-9. **Week 17-18**: Introduction to Deep Learning
-10. **Week 19-20**: Natural Language Processing
-11. **Week 21-22**: Big Data Technologies
-12. **Week 23-24**: Data Science in Practice
-13. **Week 25**: Capstone Project
-
-## Repository Structure
-
-The repository is organized into the following sections to facilitate easy navigation and access to materials:
-
-- **Lectures**: Slide decks, notes, and recordings from all course lectures.
-- **Assignments**: Weekly assignments to reinforce learning and provide hands-on experience.
-- **Projects**: Detailed instructions and datasets for capstone projects.
-- **Resources**: Additional resources, including reading materials, tutorials, and useful links.
-- **Scripts**: Sample code and scripts used in lectures and assignments.
-
-## Getting Started
-
-To get started with the course, follow these steps:
-
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/krsna016/python-data-visualization-libraries-ineuron
-
----
-
-## System Design & Folder Structure
-```text
-.github/                  # CI/CD pipelines, Dependabot, and Issue/PR schemas
-.editorconfig             # Unified file formatting configuration
-.gitattributes            # Normalization variables for LF line endings
-.gitignore                # Local environment overrides and cache limits
-.pre-commit-config.yaml   # Quality check execution triggers
-LICENSE                   # Permissive open-source MIT License
-Makefile                  # Development workspace orchestrator
-CHANGELOG.md              # Historical version tracking
-CONTRIBUTING.md           # Developer onboarding guidelines
-CODE_OF_CONDUCT.md        # Communication guidelines
-SECURITY.md               # Responsible vulnerability disclosures
+```mermaid
+graph TD
+    Raw[Raw CSV/JSON Ingestion] -->|Pandas/Numpy| ETL[Vectorized ETL Transformation]
+    ETL -->|Aggregations| Stats[Statistical Analysis]
+    
+    Stats -->|Static/Print| Matplotlib[Matplotlib / Seaborn]
+    Stats -->|Interactive Web| Plotly[Plotly / Bokeh]
+    
+    Plotly -->|JSON Payload| Frontend[Next.js / React Dashboards]
 ```
 
----
+## Technology Stack
+- **Data Engineering:** Python 3.11, Pandas, Numpy
+- **Interactive Rendering:** Plotly, Bokeh
+- **Static Rendering:** Matplotlib, Seaborn
+- **Testing:** Pytest
 
-## Tooling & Tech Stack
-- **Primary Environment:** Python runtime.
-- **Workflow Automation:** GitHub Actions CI, Dependabot, and CodeQL.
-- **Standards Checkers:** Git `pre-commit` hook validations.
+## Project Structure
+```text
+python-data-visualization/
+├── Pandas/                  # Vectorized ETL and DataFrame manipulation
+├── Numpy/                   # Matrix mathematics and broadcasting
+├── Plotly/                  # Interactive HTML/WebGL dashboard generation
+├── Bokeh/                   # Streaming dataset visualizations
+├── Seaborn/                 # Statistical modeling and heatmaps
+├── Matplotlib/              # Base-level rendering engine
+├── tests/                   # Pytest integrity suites
+└── README.md                # System documentation
+```
 
----
+## Installation
+Ensure Python 3.11+ is installed. It is highly recommended to run this within a virtual environment.
+```bash
+git clone https://github.com/krsna016/python-data-visualization.git
+cd python-data-visualization
+python3 -m venv venv
+source venv/bin/activate
+pip install pandas numpy matplotlib seaborn plotly bokeh pytest
+```
 
-## Quickstart & Local Setup
-1. Clone this repository locally:
-   ```bash
-   git clone https://github.com/krsna016/python-data-visualization-libraries-2025-v1.git
-   cd python-data-visualization-libraries-2025-v1
-   ```
-2. Trigger the local setup runner:
-   ```bash
-   make help
-   ```
+## Usage
+Jupyter Notebooks or Python scripts within specific domains can be executed directly:
+```bash
+cd Plotly
+python3 generate_dashboard.py
+```
 
----
+## Examples
+*Example of strictly enforced Pandas vectorization replacing an inefficient loop:*
+```python
+import pandas as pd
+import numpy as np
 
-## Security & Responsible Disclosure
-For details on disclosing vulnerabilities or hardcoded secrets, refer directly to our [SECURITY.md](SECURITY.md) guidelines.
+# BAD: O(n) performance
+# for index, row in df.iterrows(): row['C'] = row['A'] + row['B']
 
----
+# GOOD: O(1) Vectorized performance
+df['C'] = np.where(df['A'] > 0, df['A'] + df['B'], 0)
+```
+
+## Screenshots
+> [!NOTE]
+> *Seaborn Correlation Matrix and Plotly 3D scatter plot screenshots are pending capture.*
+
+## Visual Demonstrations
+> [!NOTE]
+> *A GIF demonstrating a Bokeh streaming data dashboard is currently being generated.*
+
+## Testing
+We enforce foundational assertions via `pytest` to ensure core Pandas/Numpy operations behave deterministically across different OS architectures.
+```bash
+pytest tests/
+```
+
+## Performance Notes
+- **Memory Profiling:** When dealing with datasets exceeding 2GB, the repository enforces the use of `chunksize` generators during CSV ingestion to prevent RAM overflow and kernel panics.
+
+## Future Improvements
+- **Polars Migration:** Introduce examples utilizing `Polars` to demonstrate multi-threaded DataFrame operations built on Rust, contrasting with Pandas' single-threaded GIL constraints.
+- **PySpark Integration:** Add a module for distributed RDD transformations to handle terabyte-scale datasets.
+
+## Contributing
+All visualization scripts must output to a localized `/exports` directory and must not commit `.html` or `.png` binary artifacts into the main git tree to prevent repository bloating.
 
 ## License
-This repository is licensed under the permissive **MIT License**. For details, see the [LICENSE](LICENSE) file.
+Licensed under the MIT License.
